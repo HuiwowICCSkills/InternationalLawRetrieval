@@ -19,6 +19,19 @@
 
 `catalog/source-catalog.json` 当前为 **37 项、34 项默认启用**；来源控制台是单独发行物，见 `GDUFSICCSkills/InternationalLawSourceConsole`。
 
+## 外部通用联网技能（不随本仓库打包）
+
+`catalog` 的 `local-skills` 分组列出的是四个通用联网/浏览器技能。它们不随本工具、单站 skill 或控制台仓库发布，需从上游单独获取：
+
+| 技能 | 获取方式 |
+|---|---|
+| `multi-search-engine` | Codex 技能市场 / SkillHub 搜索同名技能（本机记录版本 2.1.3）；公开实现参考 <https://github.com/NachaFromMars/multi-search-engine>，上游版本可能不同 |
+| `web-access` | <https://github.com/eze-is/web-access>（MIT） |
+| `agent-browser` | <https://github.com/vercel-labs/agent-browser>；安装 `npm i -g agent-browser && agent-browser install` |
+| `spider-mind` | <https://github.com/qunliu031208-debug/spider-mind>；或通过 `skill-installer` 安装 |
+
+这些技能只影响通用网页搜索和浏览器自动化；`icl-research`、`gil-research` 及各单站检索技能的核心 HTTP/API 路径不依赖它们。`catalog` 中的 `local-skills` 只是本机能力记录，不代表本仓库包含这些技能。
+
 ## 安装
 
 Windows PowerShell：

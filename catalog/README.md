@@ -17,3 +17,7 @@
 <https://github.com/GDUFSICCSkills/InternationalLawRetrieval>
 
 仓库结构：`skills/icl-research`、`skills/gil-research`、`skills/international-law-manual-research`、`catalog/`。来源控制台仍单独发行：<https://github.com/GDUFSICCSkills/InternationalLawSourceConsole>。
+
+## 外部通用联网技能
+
+`local-skills` 分组中的 `multi-search-engine`、`web-access`、`agent-browser`、`spider-mind` 不随本工具打包，需从上游单独获取：`web-access` 见 <https://github.com/eze-is/web-access>，`agent-browser` 见 <https://github.com/vercel-labs/agent-browser>，`spider-mind` 见 <https://github.com/qunliu031208-debug/spider-mind>；`multi-search-engine` 从 Codex 技能市场 / SkillHub 搜索同名技能，公开实现参考 <https://github.com/NachaFromMars/multi-search-engine>。它们不是国际法检索的必装依赖。

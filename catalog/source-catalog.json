@@ -6,9 +6,9 @@
   "groups": [
     {
       "id": "local-skills",
-      "title": "本机网络搜索技能（配置前已有）",
+      "title": "外部通用联网技能（需另行安装）",
       "icon": "globe",
-      "description": "本机原有的通用联网能力，不属于国际法专用工具包。",
+      "description": "通用联网/浏览器能力，不随本工具打包；从上游技能市场或 GitHub 获取，详见发行版 README。",
       "items": [
         {
           "id": "skill.multi-search-engine",
