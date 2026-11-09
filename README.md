@@ -73,3 +73,52 @@ Pop-Location
 - `gil-research` 的 `--sources all` 只运行当前 8 个 active 来源。
 - 来源目录不包含正文内容；检索结果、全文和访问限制由对应 skill/来源负责。
 - `gdufs-auth-session` / `HeinOnlineSearcher` 的登录态不随仓库发布，需要在新机器上重新登录；`HUDOCSearcher` / `ICJSearcher` 和 `gil-research` 的无头回退需要 Chrome 及对应 requirements 中的浏览器依赖。
+
+## 实测效果（2026-11-09）
+
+以下命令与结果来自本机 `~/.codex/skills` 下同名 skill 的实网运行；检索日期 2026-11-09（Asia/Shanghai），输出为该次运行实际返回的 JSON 报告。
+
+### `icl-research`：国际刑法聚合检索
+
+```powershell
+& .\run.ps1 search 'genocide' --channels jicj,cmn,toaep --limit 5
+```
+
+本次 `jicj` 返回 `status=ok`、5 条 Crossref 元数据；`toaep` 返回 `status=partial`（bounded crawl，`exhaustive=false`）并命中 10 条 TOAEP 目录/PDF 记录；`cmn` 返回 `status=partial`，只取到站点首页和两份介绍性 PDF，没有文章级命中。代表性结果：
+
+| 渠道 | 题名 | 作者 / 日期 | 链接 |
+| --- | --- | --- | --- |
+| jicj | Genocide, Complicity in Genocide and International v. Domestic Jurisdiction | Harmen G. van der Wilt；2006-05-01 | <https://doi.org/10.1093/jicj/mql014> |
+| jicj | 'Complicity in Genocide' versus 'Aiding and Abetting Genocide': Construing the Difference in the ICTR and ICTY Statutes | C. Eboe-Osuji；2005-03-01 | <https://doi.org/10.1093/jicj/3.1.56> |
+| jicj | Divergent Approaches to Determining Responsibility for Genocide: The Darfur Commission of Inquiry and the ICJ's Judgment in the Genocide Case | A. B. Loewenstein, S. A. Kostas；2007-09-01 | <https://doi.org/10.1093/jicj/mqm049> |
+| toaep | Darfur’s Second Genocide: Breaking the Cycle of Violence and Impunity in Sudan | TOAEP 政策简报 PDF | <https://www.toaep.org/pbs-pdf/162-iliopoulos/> |
+| toaep | A Critical Assessment of the Exhibition ‘Burma’s Path to Genocide’ at the US Holocaust Memorial Museum | TOAEP 政策简报 PDF | <https://www.toaep.org/pbs-pdf/130-tonkin/> |
+
+> `jicj` 是 Crossref 书目元数据，不含出版社全文；`toaep` 和 `cmn` 是有界爬取，命中数不是全站统计。`cmn` 本次未取得文章级结果，保留 `partial` 状态，不能据此认为 CMN 没有相关资料。
+
+### `gil-research`：一般国际法聚合检索
+
+```powershell
+& .\run.ps1 search 'state immunity' --sources cjil,ejil,ajil,google_scholar,ssrn,avalon --limit 3
+```
+
+六个来源的实际状态与代表结果如下（`total` 为各来源报告值；Google Scholar 本次不可用，SSRN 走 Crossref 回退）：
+
+| 来源 | 状态 | total | 代表结果 |
+| --- | --- | --- | --- |
+| cjil | ok | 62 | Foreign State Immunity Law of China: A Preliminary Appraisal — Xinxiang Shi（2024-06-01），<https://doi.org/10.1093/chinesejil/jmae017> |
+| ejil | ok | 124 | State Immunity and Judicial Countermeasures — Marco Longobardo（2021-04-23），<https://doi.org/10.1093/ejil/chab013> |
+| ajil | ok | 735 | State responsibility in private civil action—sovereign immunity—immunity for jus cogens violations—belligerent occupation—peace treaties — Bernard H. Oxman, Ilias Bantekas（1998-10），<https://doi.org/10.2307/2998144> |
+| google_scholar | unavailable | — | 未返回结果容器；保留为不可用，不写作零命中 |
+| ssrn | fallback | 20,527 | State-Owned Corporations and State Immunity in Europe — Stefan Kirchner（2006），<https://doi.org/10.2139/ssrn.880718> |
+| avalon | ok | — | Convention Between the United States and Belgium Concerning the Rights, Privileges, and Immunities of Consuls: December 5, 1868，<https://avalon.law.yale.edu/19th_century/bel008.asp> |
+
+> 期刊来源是 Crossref 元数据和可用摘要，不是全文；SSRN 的 `fallback` 表示用 Crossref DOI prefix 10.2139 作为检索索引，摘要页可能再走无头回退。Avalon 是目录标题匹配后直接取文档，不是全库全文检索。
+
+### `international-law-manual-research`：人工补检交接
+
+```powershell
+python -X utf8 '<skill-dir>/scripts/handoff.py' --input './icl-research.json' --format markdown --out './manual-tasks.md'
+```
+
+以本次 `icl-research` 的 `genocide` 报告为输入，实际生成 1 项人工待办（`icl:jicj` 期刊全文补取）和 4 项“可先自动处理”的后续动作（`icl:cmn`、`icl:toaep` 各 2 项）。清单明确标注所有任务均未执行，`pending` 不等于已取得全文。

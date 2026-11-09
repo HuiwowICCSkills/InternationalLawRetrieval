@@ -47,3 +47,22 @@
 2026-10-14 复核时 11 个渠道取得真实记录，其中两个博客返回正文；同日接入的 `mpil` 与 `oril` 渠道也已用真实检索与取全文验证。2026-10-15 补测确认 EJIL: Talk! 的 REST API 和 RSS/feed 路径在当前网络均被站点级 403 拦截，而无头 Chrome 打开 `/?s=war+crime` 可返回 142 页真实搜索结果，因此该渠道增加了浏览器 HTML 回退。HUDOC 先建立会话再查询，`mpil`/`oril` 使用浏览器式 UA 并复用会话 Cookie；这些站点仍可能按 IP 或频率返回 403/challenge。ODS 可按文号取得 PDF，关键词检索仍不完整；官方 UNTS Advanced Search 页面可用，但当前适配器仍只扫描 MTDSG。Crossref 元数据与部分摘要不等于文章全文。2026-10-16：EJIL: Talk! 渠道拆分到独立技能 `EJILTalkSearcher`，本工具包移除 `ejil_talk`；同日 HeinOnline 渠道拆分到独立技能 `HeinOnlineSearcher`，本工具包移除 `heinonline`。2026-11-02：ICJ 接入官方 Document Search；随后把同一无头核心扩展给 HUDOC JSON API 和 SSRN 摘要页。2026-11-09：`icj`、`echr`、`mpil`、`oril`、`unts`、`un_documents`、`opinio_juris`、`intl_law_observer` 拆分到对应独立技能；本工具移除这八个来源。历史验证记录保留在 `references/validation.md`。
 
 原始响应与哈希自动保存到当前工作目录 `.gil-cache`。同一查询加 `--offline` 可离线重放；`--cache-ttl 0` 刷新。`--offset` 与结果 `pagination.next_offset` 配合翻页；`--format markdown` 输出可读正文。检索结果默认 UTF-8 JSON，结构为 `channels[].results`。
+
+## 实测效果（2026-11-09）
+
+以下命令与结果来自本机 `~/.codex/skills/gil-research` 的实网运行；检索日期 2026-11-09（Asia/Shanghai）。
+
+```powershell
+& .\run.ps1 search 'state immunity' --sources cjil,ejil,ajil,google_scholar,ssrn,avalon --limit 3
+```
+
+| 来源 | 状态 | total | 代表结果 |
+| --- | --- | --- | --- |
+| cjil | ok | 62 | Foreign State Immunity Law of China: A Preliminary Appraisal — Xinxiang Shi（2024-06-01），<https://doi.org/10.1093/chinesejil/jmae017> |
+| ejil | ok | 124 | State Immunity and Judicial Countermeasures — Marco Longobardo（2021-04-23），<https://doi.org/10.1093/ejil/chab013> |
+| ajil | ok | 735 | State responsibility in private civil action—sovereign immunity—immunity for jus cogens violations—belligerent occupation—peace treaties — Bernard H. Oxman, Ilias Bantekas（1998-10），<https://doi.org/10.2307/2998144> |
+| google_scholar | unavailable | — | 未返回结果容器；保留为不可用，不写作零命中 |
+| ssrn | fallback | 20,527 | State-Owned Corporations and State Immunity in Europe — Stefan Kirchner（2006），<https://doi.org/10.2139/ssrn.880718> |
+| avalon | ok | — | Convention Between the United States and Belgium Concerning the Rights, Privileges, and Immunities of Consuls: December 5, 1868，<https://avalon.law.yale.edu/19th_century/bel008.asp> |
+
+> 期刊来源是 Crossref 元数据和可用摘要，不是全文；SSRN 的 `fallback` 表示用 Crossref DOI prefix 10.2139 作为检索索引，摘要页可能再走无头回退。Avalon 是目录标题匹配后直接取文档，不是全库全文检索。Google Scholar 的 `unavailable` 是本次访问失败，不代表其索引中没有相关资料。
