@@ -26,6 +26,9 @@ git clone https://github.com/GDUFSICCSkills/InternationalLawRetrieval.git "$env:
 Copy-Item -Recurse -Force `
   "$env:USERPROFILE\Documents\InternationalLawRetrieval\skills\*" `
   "$env:USERPROFILE\.codex\skills\"
+
+python -X utf8 -m pip install -r "$env:USERPROFILE\Documents\InternationalLawRetrieval\skills\icl-research\scripts\requirements.txt"
+python -X utf8 -m pip install -r "$env:USERPROFILE\Documents\InternationalLawRetrieval\skills\gil-research\requirements.txt"
 ```
 
 `gil-research` 的 Cloudflare 回退需要其 `vendor/` 目录和 `requirements.txt`；`ICJSearcher`/`HUDOCSearcher` 的无头回退依赖在各自仓库的 requirements 中。
@@ -54,3 +57,4 @@ Pop-Location
 - `icl-research` 的 `list` 会区分 `channels`（当前可选）与 `legacy_channels`；`search --channels` 不接受 legacy ID。
 - `gil-research` 的 `--sources all` 只运行当前 8 个 active 来源。
 - 来源目录不包含正文内容；检索结果、全文和访问限制由对应 skill/来源负责。
+- `gdufs-auth-session` / `HeinOnlineSearcher` 的登录态不随仓库发布，需要在新机器上重新登录；`HUDOCSearcher` / `ICJSearcher` 和 `gil-research` 的无头回退需要 Chrome 及对应 requirements 中的浏览器依赖。
