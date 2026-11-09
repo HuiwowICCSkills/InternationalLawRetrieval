@@ -2,7 +2,7 @@
 
 国际法检索工具本体：`icl-research`、`gil-research`、`international-law-manual-research` 三个核心 skill，以及来源目录和校验工具。
 
-本仓库是**聚合器/工作流本体**，不是单站来源技能。单站检索技能（`LegalToolsSearcher`、`ICCSearcher`、`OPILSearcher`、`ICRCSearcher`、`ICJSearcher`、`HUDOCSearcher`、`ICDSearcher`、`IRMCTCldSearcher`、`UCRSearcher`、`ICTYSearcher`、`ICTRSearcher`、`UNTSSearcher`、`UNDocsSearcher`、`CILRAPSearcher`、`OpinioJurisSearcher`、`IntlLawObserverSearcher` 等）各自在 `HuiwowICCSkills` 下有独立私有仓库。
+本仓库是**聚合器/工作流本体**，不是单站来源技能。单站检索技能（`LegalToolsSearcher`、`ICCSearcher`、`OPILSearcher`、`ICRCSearcher`、`ICJSearcher`、`HUDOCSearcher`、`ICDSearcher`、`IRMCTCldSearcher`、`UCRSearcher`、`ICTYSearcher`、`ICTRSearcher`、`UNTSSearcher`、`UNDocsSearcher`、`CILRAPSearcher`、`OpinioJurisSearcher`、`IntlLawObserverSearcher` 等）各自在 `HuiwowICCSkills` 下有独立公开仓库。
 
 > `skills/*/SKILL.md` 中的 `../<Skill>/SKILL.md` 相对链接按“所有 skill 都安装在同一个 `~/.codex/skills` 目录”编写；单独克隆本仓库时不会包含这些独立 skill，相关链接可能指向不存在的路径。按 README 的安装步骤把独立 skill 一并放入 `~/.codex/skills` 后即可正常解析。
 
