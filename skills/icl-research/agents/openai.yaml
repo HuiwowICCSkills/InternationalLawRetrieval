@@ -1,0 +1,4 @@
+interface:
+  display_name: "国际刑法多渠道检索"
+  short_description: "通过 API、HTTP 和本地索引检索国际刑法资源，不依赖浏览器"
+  default_prompt: "使用 $icl-research 检索国际刑法问题，覆盖当前 4 个可选渠道，并按需调用已拆分的单站技能；报告来源、原文和检索限制。"

@@ -1,0 +1,4 @@
+interface:
+  display_name: "国际法人工补检"
+  short_description: "接手国际法检索中的登录、订阅、访问拦截、完整数据库及缺失版本补检"
+  default_prompt: "使用 $international-law-manual-research 整理这份检索报告中的人工待办，明确入口、缺口及需要回收的材料。"

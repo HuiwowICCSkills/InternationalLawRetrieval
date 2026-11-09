@@ -1,0 +1,209 @@
+{
+  "jicj": {
+    "name": "Journal of International Criminal Justice",
+    "method": "crossref",
+    "scope": "JICJ ISSN 1478-1387 / 1478-1395; bibliographic metadata, not publisher full text"
+  },
+  "icty": {
+    "name": "ICTY cases and public legacy documents",
+    "method": "tribunal",
+    "organisation": "International Criminal Tribunal for the former Yugoslavia (ICTY)",
+    "seeds": [
+      "https://www.icty.org/en/cases"
+    ],
+    "scope": "Official public case directory plus institution-filtered Legal Tools records",
+    "active": false,
+    "moved_to": "standalone skill"
+  },
+  "ictr": {
+    "name": "ICTR cases and public legacy documents",
+    "method": "tribunal",
+    "organisation": "International Criminal Tribunal for Rwanda (ICTR)",
+    "seeds": [
+      "https://unictr.irmct.org/en/cases"
+    ],
+    "scope": "Official public case directory, native HTTP search, plus institution-filtered Legal Tools records",
+    "active": false,
+    "moved_to": "standalone skill"
+  },
+  "ucr": {
+    "name": "ICTY/ICTR Legal Library successor: IRMCT Unified Court Records",
+    "method": "ucr",
+    "scope": "UCR full search requires registration/sign-in; the adapter also searches the public recent-filings endpoint and ICTY/ICTR/IRMCT holdings in Legal Tools, neither of which is the whole registry",
+    "active": false,
+    "moved_to": "standalone skill"
+  },
+  "irmct-cld": {
+    "name": "ICTY/ICTR/IRMCT Case Law Database",
+    "method": "cld",
+    "scope": "Entire public basic-search metadata JSON; selected Appeals Chamber extracts, not all trial records",
+    "active": false,
+    "moved_to": "standalone skill"
+  },
+  "cilrap": {
+    "name": "Centre for International Law Research and Policy",
+    "method": "crawl",
+    "seeds": [
+      "https://www.cilrap.org/purpose",
+      "https://www.cilrap.org/thematic-libraries",
+      "https://www.cilrap.org/events",
+      "https://www.cilrap.org/news"
+    ],
+    "domains": [
+      "www.cilrap.org"
+    ],
+    "paths": [
+      "/"
+    ],
+    "scope": "Bounded public HTML/PDF crawl and local text search; incomplete site coverage",
+    "active": false,
+    "moved_to": "CILRAPSearcher"
+  },
+  "fichl": {
+    "name": "Forum for International Criminal and Humanitarian Law",
+    "method": "crawl",
+    "seeds": [
+      "https://www.cilrap.org/fichl"
+    ],
+    "domains": [
+      "www.cilrap.org"
+    ],
+    "paths": [
+      "/fichl"
+    ],
+    "scope": "FICHL section relocated from fichl.org; bounded public HTML/PDF crawl",
+    "active": false,
+    "moved_to": "CILRAPSearcher"
+  },
+  "cmn": {
+    "name": "Case Matrix Network and CMN Knowledge Hub",
+    "method": "cmn",
+    "seeds": [
+      "https://www.casematrixnetwork.org/cmn-knowledge-hub",
+      "https://www.casematrixnetwork.org/activities"
+    ],
+    "domains": [
+      "www.casematrixnetwork.org"
+    ],
+    "paths": [
+      "/"
+    ],
+    "scope": "CMN public pages only (bounded crawl). Lexsitus/CLICC search moved to the standalone LexsitusSearcher skill and is no longer part of this channel"
+  },
+  "toaep": {
+    "name": "Torkel Opsahl Academic EPublisher",
+    "method": "toaep",
+    "organisation": "Torkel Opsahl Academic EPublisher (TOAEP)",
+    "seeds": [
+      "https://www.toaep.org/ps",
+      "https://www.toaep.org/pbs",
+      "https://www.toaep.org/ops",
+      "https://www.toaep.org/lotfs",
+      "https://www.toaep.org/nas"
+    ],
+    "domains": [
+      "www.toaep.org"
+    ],
+    "paths": [
+      "/"
+    ],
+    "scope": "Publisher catalogues and institution-filtered full-text search of Legal Tools holdings"
+  },
+  "icd": {
+    "name": "International Crimes Database, Asser Institute",
+    "method": "icd",
+    "seeds": [
+      "https://www.internationalcrimesdatabase.org/Cases/ByName",
+      "https://www.internationalcrimesdatabase.org/Cases/ByCategory",
+      "https://www.internationalcrimesdatabase.org/Cases/ByName/All"
+    ],
+    "domains": [
+      "www.internationalcrimesdatabase.org"
+    ],
+    "paths": [
+      "/Case/",
+      "/Cases/",
+      "/Crimes/",
+      "/Commentary/"
+    ],
+    "scope": "Public GET keyword search over the whole case record, five rows per page. The ASP.NET form POST and /Cases/ByName/All are filtered at the front door, so the adapter falls back to a labelled term-by-term intersection and then to a bounded catalogue crawl",
+    "active": false,
+    "moved_to": "standalone skill"
+  },
+  "klamberg": {
+    "name": "ICL Database & Commentary / Klamberg",
+    "method": "klamberg",
+    "scope": "Legacy iclklamberg.com has an origin DNS failure; Lexsitus/CLICC search lives in the standalone LexsitusSearcher skill, and this channel keeps Klamberg's TOAEP books as its related alternative. Public Wayback snapshots can retrieve some historical pages and PDFs but are not a complete or maintained copy of the old database."
+  },
+  "icrc-ihl": {
+    "name": "ICRC IHL databases: treaties, commentaries and national practice",
+    "method": "icrc",
+    "indexes": [
+      "tspc_treaty_search",
+      "tspc_article_search",
+      "tspc_commentary_search",
+      "tspc_participant_search",
+      "np_search"
+    ],
+    "scope": "ICRC Drupal JSON:API indexes when reachable; exact multi-word phrases may trigger a query-specific ICRC security-policy 403 or a transient 503. This is not Cloudflare. Blocked requests fall back to ICRC-authored Legal Tools holdings, not equivalent database coverage",
+    "active": false,
+    "moved_to": "standalone skill"
+  },
+  "icrc-customary": {
+    "name": "Customary International Humanitarian Law: rules and practice",
+    "method": "icrc",
+    "indexes": [
+      "cihl_rule_search",
+      "cihl_practice_search"
+    ],
+    "scope": "Rules/practice JSON:API when reachable; exact multi-word phrases may trigger a query-specific ICRC security-policy 403 or a transient 503. This is not Cloudflare. Fallback searches the English Rules and Practice book PDFs mirrored in Legal Tools, not updated online state practice",
+    "active": false,
+    "moved_to": "standalone skill"
+  },
+  "mpil": {
+    "name": "Max Planck Encyclopedia of Public International Law (MPIL)",
+    "method": "opil",
+    "url": "https://opil.ouplaw.com/home/MPIL",
+    "search_url": "https://opil.ouplaw.com/search",
+    "facets": {
+      "prd": "MPEIPRO"
+    },
+    "extra_params": {
+      "access": "all",
+      "level": "all"
+    },
+    "expected_product": "Max Planck Encyclopedias of International Law [MPIL]",
+    "via": "mpil-search",
+    "session_cookies": true,
+    "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/155.0.0.0 Safari/537.36",
+    "user_agent_hosts": [
+      "opil.ouplaw.com"
+    ],
+    "content_selector": "#mainContent",
+    "fetch_scope": "OPIL entry page text from #mainContent: the citation header (title, date, citation(s), content type, product, module, jurisdiction, subject terms) plus, depending on the product and document, either the editorial core issue(s) alone, the encyclopedia entry body, or the full decision text. Measured 2026-10-14: most sampled ORIL report pages returned 1,333-2,266 characters (headnote only; several carried a sign-in prompt for the rest) while Ongwen Trial Judgment law-icl-2038icc21 returned 381,724 characters. Read text_characters before treating a page as a full report.",
+    "scope": "Oxford Public International Law search limited to the MPIL product (MPEPIL and MPEiPro), used here for ICL entries such as command responsibility, genocide, crimes against humanity and the ad hoc tribunals. Returns title, author, module, subject terms and a leading excerpt; the excerpt is not the entry full text, which needs a separate fetch",
+    "active": false,
+    "moved_to": "standalone skill"
+  },
+  "oril-icl": {
+    "name": "Oxford Reports on International Law: International Criminal Law (ICL)",
+    "method": "opil",
+    "url": "https://opil.ouplaw.com/home/ORIL",
+    "search_url": "https://opil.ouplaw.com/search",
+    "facets": {
+      "pc_32": "68306099-6983-4cb7-a931-60f851434432"
+    },
+    "expected_product": "Oxford Reports on International Law [ORIL]",
+    "via": "oril-icl-search",
+    "session_cookies": true,
+    "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/155.0.0.0 Safari/537.36",
+    "user_agent_hosts": [
+      "opil.ouplaw.com"
+    ],
+    "content_selector": "#mainContent",
+    "fetch_scope": "OPIL entry page text from #mainContent: the citation header (title, date, citation(s), content type, product, module, jurisdiction, subject terms) plus, depending on the product and document, either the editorial core issue(s) alone, the encyclopedia entry body, or the full decision text. Measured 2026-10-14: most sampled ORIL report pages returned 1,333-2,266 characters (headnote only; several carried a sign-in prompt for the rest) while Ongwen Trial Judgment law-icl-2038icc21 returned 381,724 characters. Read text_characters before treating a page as a full report.",
+    "scope": "Oxford Reports on International Law, International Criminal Law sub-series (product facet pc_32). Anonymously the sub-series reports about 1,531 browsable rows and 365 for command responsibility, against 165 in MPIL and 1,011 across the whole ORIL product. Rows carry the citation header, date, jurisdiction, subject terms and the editorial core issue(s), never the report text. Report pages were readable anonymously in only part of the sample; whole-corpus report text is expected to need an institutional session.",
+    "active": false,
+    "moved_to": "standalone skill"
+  }
+}

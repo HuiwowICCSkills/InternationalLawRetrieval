@@ -1,0 +1,408 @@
+{
+  "schema_version": 1,
+  "catalog_id": "intl-law-search-sources",
+  "owner": "international-law-retrieval",
+  "updated_at": "2026-11-09",
+  "groups": [
+    {
+      "id": "local-skills",
+      "title": "本机网络搜索技能（配置前已有）",
+      "icon": "globe",
+      "description": "本机原有的通用联网能力，不属于国际法专用工具包。",
+      "items": [
+        {
+          "id": "skill.multi-search-engine",
+          "name": "multi-search-engine",
+          "description": "16 个搜索引擎聚合（7 个中文 + 9 个全球），支持高级检索语法与时间过滤，不需要 API Key。",
+          "tags": [
+            "auto"
+          ],
+          "default_enabled": true
+        },
+        {
+          "id": "skill.web-access",
+          "name": "web-access",
+          "description": "统一联网入口：搜索、抓取、登录后操作、动态渲染页面都从这里走。",
+          "tags": [
+            "browser"
+          ],
+          "default_enabled": true
+        },
+        {
+          "id": "skill.agent-browser",
+          "name": "agent-browser",
+          "description": "浏览器自动化 CLI：导航、填表、点击、截图、抽取数据、测试网页应用。",
+          "tags": [
+            "browser"
+          ],
+          "default_enabled": true
+        },
+        {
+          "id": "skill.spider-mind",
+          "name": "spider-mind",
+          "description": "爬虫逆向框架：结构化侦察 → 裸 Python → Playwright 补环境 → jsreverser 兜底。重活时用，耗时较长。",
+          "tags": [
+            "browser"
+          ],
+          "default_enabled": true
+        }
+      ]
+    },
+    {
+      "id": "icl-standalone",
+      "title": "独立国际法检索技能（单站深度）",
+      "icon": "book",
+      "description": "每个技能只打一个站点，能比工具包渠道做得更深；与下面的工具包渠道有重叠。",
+      "items": [
+        {
+          "id": "skill.EJILTalkSearcher",
+          "name": "EJILTalkSearcher",
+          "description": "EJIL: Talk! 来源（原 GIL 工具包 ejil_talk 渠道已删除，直接由本技能承担）。先走 WordPress REST API，被 WAF 拦时用无头 Chrome 打开站内搜索页。",
+          "tags": [
+            "auto",
+            "browser"
+          ],
+          "default_enabled": true
+        },
+        {
+          "id": "skill.HeinOnlineSearcher",
+          "name": "HeinOnlineSearcher",
+          "description": "HeinOnline 来源（原 ICL/GIL 工具包 heinonline 渠道已删除，直接由本技能承担）：广外机构访问，单框/多字段高级检索 + 分节 PDF 下载。依赖 gdufs-auth-session 会话。",
+          "tags": [
+            "browser",
+            "login",
+            "meta"
+          ],
+          "default_enabled": true
+        },
+        {
+          "id": "skill.anna-breadl-book-finder",
+          "name": "anna-breadl-book-finder",
+          "description": "Anna’s Archive → Breadl 来源（独立 skill）：纯无头读取书目详情中的 Request Code，提交 Breadl 解析镜像并按明确指令下载；Anna 搜索受限时返回 auth-required，不误报零命中。",
+          "tags": [
+            "browser",
+            "login"
+          ],
+          "default_enabled": true
+        },
+        {
+          "id": "skill.LegalToolsSearcher",
+          "name": "LegalToolsSearcher",
+          "description": "ICC Legal Tools：匿名关键词检索、按官方文号精确定位、按 slug/编号下载 PDF 并抽全文。",
+          "tags": [
+            "auto"
+          ],
+          "default_enabled": true
+        },
+        {
+          "id": "skill.ICCSearcher",
+          "name": "ICCSearcher",
+          "description": "ICC 官网来源（原 icl.icc 渠道已删除，直接由本技能承担）：原生 /search 站内检索正常，读取链接正文/PDF；个别请求遇 WAF 时自动回退到 /cases 与 Legal Tools。",
+          "tags": [
+            "auto",
+            "fallback"
+          ],
+          "default_enabled": true
+        },
+        {
+          "id": "skill.LexsitusSearcher",
+          "name": "LexsitusSearcher",
+          "description": "Lexsitus 来源（原 icl.cmn 内嵌的 Lexsitus API 已删除，直接由本技能承担）：按 treeKind 检索 CLICC 评注/判例记录/要件/准备工作文件/TOAEP/讲座，按节点路径读取正文。",
+          "tags": [
+            "auto"
+          ],
+          "default_enabled": true
+        },
+        {
+          "id": "skill.OPILSearcher",
+          "name": "OPILSearcher",
+          "description": "Oxford Public International Law 平台（MPIL、ORIL、ORIL-ICL）独立 skill；同一站点三个产品档案，处理会话握手与相反分面参数。",
+          "tags": [
+            "auto",
+            "meta",
+            "login"
+          ],
+          "default_enabled": true
+        },
+        {
+          "id": "skill.ICRCSearcher",
+          "name": "ICRCSearcher",
+          "description": "ICRC IHL 数据库（条约、评注、国家实践）与 Customary IHL 独立 skill；7 个 Drupal JSON:API 索引，含词项回退。",
+          "tags": [
+            "auto"
+          ],
+          "default_enabled": true
+        },
+        {
+          "id": "skill.ICJSearcher",
+          "name": "ICJSearcher",
+          "description": "ICJ 官网 Document Search 独立 skill；官方文书检索、PDF 下载/文本提取与 Cloudflare 无头回退。",
+          "tags": [
+            "auto",
+            "fallback"
+          ],
+          "default_enabled": true
+        },
+        {
+          "id": "skill.HUDOCSearcher",
+          "name": "HUDOCSearcher",
+          "description": "欧洲人权法院 HUDOC 独立 skill；JSON API、/eng?i= 文档页与 DrissionPage 无头回退。",
+          "tags": [
+            "auto",
+            "browser",
+            "fallback"
+          ],
+          "default_enabled": true
+        },
+        {
+          "id": "skill.ICDSearcher",
+          "name": "ICDSearcher",
+          "description": "International Crimes Database 独立 skill；公开案件检索、详情页与短语 403 词项交集。",
+          "tags": [
+            "auto"
+          ],
+          "default_enabled": true
+        },
+        {
+          "id": "skill.IRMCTCldSearcher",
+          "name": "IRMCTCldSearcher",
+          "description": "IRMCT Case Law Database 独立 skill；精选上诉摘录与 jsonExtract 正文。",
+          "tags": [
+            "auto",
+            "meta"
+          ],
+          "default_enabled": true
+        },
+        {
+          "id": "skill.UCRSearcher",
+          "name": "UCRSearcher",
+          "description": "IRMCT Unified Court Records 公开 recent-filings 独立 skill；完整 UCR 登录检索仍走人工补检。",
+          "tags": [
+            "auto",
+            "login",
+            "degraded"
+          ],
+          "default_enabled": true
+        },
+        {
+          "id": "skill.ICTYSearcher",
+          "name": "ICTYSearcher",
+          "description": "ICTY 官网独立 skill；站内搜索、案件页、新闻稿与 PDF。",
+          "tags": [
+            "auto"
+          ],
+          "default_enabled": true
+        },
+        {
+          "id": "skill.ICTRSearcher",
+          "name": "ICTRSearcher",
+          "description": "ICTR 官网独立 skill；原生搜索、案件页、新闻稿与 PDF。",
+          "tags": [
+            "auto"
+          ],
+          "default_enabled": true
+        },
+        {
+          "id": "skill.UNTSSearcher",
+          "name": "UNTSSearcher",
+          "description": "联合国条约集 UNTC/MTDSG 标题目录独立 skill；标题检索与条约详情页读取，明确不是完整 UNTS 登记库。",
+          "tags": [
+            "auto",
+            "meta"
+          ],
+          "default_enabled": true
+        },
+        {
+          "id": "skill.UNDocsSearcher",
+          "name": "UNDocsSearcher",
+          "description": "联合国文件（UNITE/ODS）独立 skill；网站索引检索与按正式文号下载 ODS PDF。",
+          "tags": [
+            "auto",
+            "degraded"
+          ],
+          "default_enabled": true
+        },
+        {
+          "id": "skill.CILRAPSearcher",
+          "name": "CILRAPSearcher",
+          "description": "CILRAP 主站与 FICHL 板块独立 skill；有界 HTML/PDF 爬取，明确 exhaustive=false。",
+          "tags": [
+            "auto",
+            "degraded"
+          ],
+          "default_enabled": true
+        },
+        {
+          "id": "skill.OpinioJurisSearcher",
+          "name": "OpinioJurisSearcher",
+          "description": "Opinio Juris 博客独立 skill；WordPress REST API 检索与公开正文读取。",
+          "tags": [
+            "auto"
+          ],
+          "default_enabled": true
+        },
+        {
+          "id": "skill.IntlLawObserverSearcher",
+          "name": "IntlLawObserverSearcher",
+          "description": "International Law Observer 博客独立 skill；WordPress REST API 检索与公开正文读取。",
+          "tags": [
+            "auto"
+          ],
+          "default_enabled": true
+        }
+      ]
+    },
+    {
+      "id": "icl-research",
+      "title": "ICL 工具包渠道（用户资源指南 §12–58）",
+      "icon": "scale",
+      "description": "icl-research 的 4 个可选渠道。CILRAP/FICHL 及此前 ICRC、ICD、ICTY、ICTR、UCR、CLD、MPIL、ORIL-ICL 已拆到独立单站 skill。",
+      "items": [
+        {
+          "id": "icl.jicj",
+          "name": "jicj｜Journal of International Criminal Justice",
+          "description": "Crossref 书目元数据，不是出版社全文。",
+          "tags": [
+            "auto",
+            "meta"
+          ],
+          "default_enabled": true
+        },
+        {
+          "id": "icl.cmn",
+          "name": "cmn｜Case Matrix Network",
+          "description": "CMN 公开页有限抓取；Lexsitus 检索已拆到 LexsitusSearcher，由该技能承担。",
+          "tags": [
+            "auto"
+          ],
+          "default_enabled": true
+        },
+        {
+          "id": "icl.toaep",
+          "name": "toaep｜Torkel Opsahl 学术出版社",
+          "description": "出版社目录 + Legal Tools 全文检索。",
+          "tags": [
+            "auto"
+          ],
+          "default_enabled": true
+        },
+        {
+          "id": "icl.klamberg",
+          "name": "klamberg｜ICL Database & Commentary",
+          "description": "旧站 iclklamberg.com 域名解析失败，只剩 Wayback 历史快照与 Klamberg 的 TOAEP 书目；CLICC 由 LexsitusSearcher 承担，默认关闭。",
+          "tags": [
+            "degraded",
+            "meta"
+          ],
+          "default_enabled": false
+        }
+      ]
+    },
+    {
+      "id": "gil-research",
+      "title": "GIL 工具包来源（一般国际法）",
+      "icon": "database",
+      "description": "gil-research 的 8 个可选来源。UNTS、UN Documents、Opinio Juris、International Law Observer 及此前的 ICJ、ECHR、MPIL、ORIL 已拆到独立单站 skill。",
+      "items": [
+        {
+          "id": "gil.cjil",
+          "name": "cjil｜Chinese Journal of International Law",
+          "description": "Crossref 元数据与可用摘要，无全文授权。",
+          "tags": [
+            "auto",
+            "meta"
+          ],
+          "default_enabled": true
+        },
+        {
+          "id": "gil.ejil",
+          "name": "ejil｜European Journal of International Law",
+          "description": "Crossref 元数据与可用摘要。",
+          "tags": [
+            "auto",
+            "meta"
+          ],
+          "default_enabled": true
+        },
+        {
+          "id": "gil.ajil",
+          "name": "ajil｜American Journal of International Law",
+          "description": "Crossref 元数据与可用摘要。",
+          "tags": [
+            "auto",
+            "meta"
+          ],
+          "default_enabled": true
+        },
+        {
+          "id": "gil.google_scholar",
+          "name": "google_scholar｜Google Scholar",
+          "description": "直接 HTML 检索记录与摘要，无公开 API，每次一页。",
+          "tags": [
+            "auto",
+            "meta"
+          ],
+          "default_enabled": true
+        },
+        {
+          "id": "gil.ssrn",
+          "name": "ssrn｜SSRN",
+          "description": "检索用 Crossref 的 10.2139 DOI 子集；摘要页遇 Cloudflare 时自动通过无头 Chrome 读取。",
+          "tags": [
+            "auto",
+            "meta",
+            "fallback"
+          ],
+          "default_enabled": true
+        },
+        {
+          "id": "gil.avalon",
+          "name": "avalon｜Avalon Project",
+          "description": "世纪索引标题匹配后抓文档 HTML，不是全库正文检索。",
+          "tags": [
+            "auto",
+            "meta"
+          ],
+          "default_enabled": true
+        },
+        {
+          "id": "gil.oxford_reports",
+          "name": "oxford_reports｜Oxford Reports（人工入口）",
+          "description": "保留给整库订阅路径，本身不发请求。",
+          "tags": [
+            "manual",
+            "login"
+          ],
+          "default_enabled": false
+        },
+        {
+          "id": "gil.blyun",
+          "name": "blyun｜百链云图书馆",
+          "description": "跳转登录页，需机构登录；目前无内容获取。",
+          "tags": [
+            "manual",
+            "login"
+          ],
+          "default_enabled": false
+        }
+      ]
+    },
+    {
+      "id": "manual",
+      "title": "人工补检",
+      "icon": "clipboard",
+      "description": "自动检索留下的人工任务：登录、订阅全文、原站拦截、完整 UNTS/ODS/UCR 查询、缺失版本获取。",
+      "items": [
+        {
+          "id": "manual.international-law-manual-research",
+          "name": "international-law-manual-research",
+          "description": "把自动检索的 JSON 报告转成条件性人工待办清单，并核验人工取得的材料。",
+          "tags": [
+            "manual"
+          ],
+          "default_enabled": true
+        }
+      ]
+    }
+  ]
+}

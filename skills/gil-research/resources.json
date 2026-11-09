@@ -1,0 +1,181 @@
+{
+  "version": "2.3.0",
+  "sources": [
+    {
+      "id": "cjil",
+      "name": "Chinese Journal of International Law",
+      "kind": "crossref",
+      "container": "Chinese Journal of International Law",
+      "issn": "1746-9937",
+      "url": "https://academic.oup.com/chinesejil",
+      "coverage": "Metadata and available abstracts via Crossref; no full-text entitlement"
+    },
+    {
+      "id": "ejil",
+      "name": "European Journal of International Law",
+      "kind": "crossref",
+      "container": "European Journal of International Law",
+      "issn": "1464-3596",
+      "url": "https://academic.oup.com/ejil",
+      "coverage": "Metadata and available abstracts via Crossref; no full-text entitlement"
+    },
+    {
+      "id": "ajil",
+      "name": "American Journal of International Law",
+      "kind": "crossref",
+      "container": "American Journal of International Law",
+      "issn": "2161-7953",
+      "url": "https://www.cambridge.org/core/journals/american-journal-of-international-law",
+      "coverage": "Metadata and available abstracts via Crossref; no full-text entitlement"
+    },
+    {
+      "id": "opinio_juris",
+      "name": "Opinio Juris",
+      "kind": "wordpress",
+      "api": "https://opiniojuris.org/wp-json/wp/v2/posts",
+      "url": "https://opiniojuris.org/",
+      "coverage": "Public rendered article bodies via WordPress API",
+      "active": false,
+      "moved_to": "OpinioJurisSearcher"
+    },
+    {
+      "id": "intl_law_observer",
+      "name": "International Law Observer",
+      "kind": "wordpress",
+      "api": "https://internationallawobserver.eu/wp-json/wp/v2/posts",
+      "url": "https://internationallawobserver.eu/",
+      "coverage": "Public rendered post bodies via WordPress API",
+      "active": false,
+      "moved_to": "IntlLawObserverSearcher"
+    },
+    {
+      "id": "unts",
+      "name": "UN Treaty Series / UN Treaty Collection",
+      "kind": "catalogue",
+      "url": "https://treaties.un.org/",
+      "coverage": "Current adapter searches the UNTC Secretary-General depositary MTDSG title catalogue, not all UNTS registrations. The official UNTS Advanced Search page is available but not yet implemented by this adapter.",
+      "active": false,
+      "moved_to": "UNTSSearcher"
+    },
+    {
+      "id": "icj",
+      "name": "International Court of Justice",
+      "kind": "icj",
+      "url": "https://www.icj-cij.org/advanced-search",
+      "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+      "user_agent_hosts": [
+        "www.icj-cij.org",
+        "icj-cij.org"
+      ],
+      "pdf_bypass": "headless_cloudflare",
+      "coverage": "Official Document Search across case-related PDFs, plus case-page text and document links. Direct PDF access may be challenged by Cloudflare; the fetch adapter retries ICJ PDFs with a headless Chrome bypass.",
+      "active": false,
+      "moved_to": "standalone skill"
+    },
+    {
+      "id": "echr",
+      "name": "European Court of Human Rights (HUDOC)",
+      "kind": "hudoc",
+      "url": "https://hudoc.echr.coe.int/",
+      "cloudflare_bypass": "headless_json_and_rendered_html",
+      "coverage": "HUDOC search metadata and public document pages. A browser-like session is tried first; Cloudflare-blocked JSON queries and /eng?i= item URLs are replayed in a headless browser, accepting JSON only when its schema is valid and document pages only after the rendered HTML is free of challenge markers.",
+      "active": false,
+      "moved_to": "standalone skill"
+    },
+    {
+      "id": "un_documents",
+      "name": "United Nations documents",
+      "kind": "un_api",
+      "url": "https://search.un.org/",
+      "coverage": "Default fallback is the UN Unite Search website index and may include news. ODS symbol access can retrieve a document PDF by symbol; ODS keyword search remains incomplete because its API requires authorization.",
+      "active": false,
+      "moved_to": "UNDocsSearcher"
+    },
+    {
+      "id": "google_scholar",
+      "name": "Google Scholar",
+      "kind": "scholar",
+      "url": "https://scholar.google.com/",
+      "coverage": "Direct HTML search records and snippets; no public API guarantee; one page per call"
+    },
+    {
+      "id": "ssrn",
+      "name": "SSRN",
+      "kind": "crossref",
+      "url": "https://papers.ssrn.com/",
+      "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+      "user_agent_hosts": [
+        "papers.ssrn.com"
+      ],
+      "cloudflare_bypass": "headless_html",
+      "coverage": "Crossref DOI prefix 10.2139 remains the search index. SSRN abstract pages use the returned DOI/SSRN ID and are retried through headless Chrome when Cloudflare returns a challenge. This recovers the public abstract page, not necessarily a downloadable paper PDF."
+    },
+    {
+      "id": "avalon",
+      "name": "Avalon Project",
+      "kind": "catalogue",
+      "url": "https://avalon.law.yale.edu/",
+      "coverage": "Century-index title matches, followed by direct document HTML fetch; not full-corpus text search"
+    },
+    {
+      "id": "mpil",
+      "name": "Max Planck Encyclopedia of Public International Law (MPIL)",
+      "kind": "opil",
+      "url": "https://opil.ouplaw.com/home/MPIL",
+      "search_url": "https://opil.ouplaw.com/search",
+      "facets": {
+        "prd": "MPEIPRO"
+      },
+      "extra_params": {
+        "access": "all",
+        "level": "all"
+      },
+      "expected_product": "Max Planck Encyclopedias of International Law [MPIL]",
+      "session_cookies": true,
+      "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/155.0.0.0 Safari/537.36",
+      "user_agent_hosts": [
+        "opil.ouplaw.com"
+      ],
+      "content_selector": "#mainContent",
+      "fetch_scope": "OPIL entry page text from #mainContent: the citation header (title, date, citation(s), content type, product, module, jurisdiction, subject terms) plus, depending on the product and document, either the editorial core issue(s) alone, the encyclopedia entry body, or the full decision text. Measured 2026-10-14: most sampled ORIL report pages returned 1,333-2,266 characters (headnote only; several carried a sign-in prompt for the rest) while Ongwen Trial Judgment law-icl-2038icc21 returned 381,724 characters. Read text_characters before treating a page as a full report.",
+      "coverage": "Oxford Public International Law search limited to the MPIL product, which since 2024 merges the MPEPIL and MPEiPro modules. Returns the result window with title, author, module, subject terms and a leading excerpt. MPIL became Subscribe-to-Open, so entry pages are normally readable without a subscription; the returned excerpt is not the entry full text.",
+      "active": false,
+      "moved_to": "standalone skill"
+    },
+    {
+      "id": "oril",
+      "name": "Oxford Reports on International Law (ORIL)",
+      "kind": "opil",
+      "url": "https://opil.ouplaw.com/home/ORIL",
+      "search_url": "https://opil.ouplaw.com/search",
+      "facets": {
+        "pc_17": "bdcb8d33-0914-4cd9-bd2b-c84ac21665f7"
+      },
+      "expected_product": "Oxford Reports on International Law [ORIL]",
+      "session_cookies": true,
+      "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/155.0.0.0 Safari/537.36",
+      "user_agent_hosts": [
+        "opil.ouplaw.com"
+      ],
+      "content_selector": "#mainContent",
+      "fetch_scope": "OPIL entry page text from #mainContent: the citation header (title, date, citation(s), content type, product, module, jurisdiction, subject terms) plus, depending on the product and document, either the editorial core issue(s) alone, the encyclopedia entry body, or the full decision text. Measured 2026-10-14: most sampled ORIL report pages returned 1,333-2,266 characters (headnote only; several carried a sign-in prompt for the rest) while Ongwen Trial Judgment law-icl-2038icc21 returned 381,724 characters. Read text_characters before treating a page as a full report.",
+      "coverage": "Oxford Reports on International Law through the pc_17 product facet. The anonymous whole-product browse reports about 10,034 rows and command responsibility returns 1,011, but that is a coverage count, not full-text access. Result rows carry the citation header, date, jurisdiction, subject terms and the editorial core issue(s), never the report text. Report pages were readable anonymously in only part of the sample; whole-corpus report text is expected to need an institutional session, for which the oxford_reports manual entry remains.",
+      "active": false,
+      "moved_to": "standalone skill"
+    },
+    {
+      "id": "oxford_reports",
+      "name": "Oxford Reports on International Law",
+      "kind": "manual",
+      "url": "https://opil.ouplaw.com/",
+      "limitation": "Manual entry, kept for whole-corpus coverage. The anonymous ORIL search is wired up as the separate oril source; reading report text across the whole product is expected to need an institutional session. This entry issues no request of its own. The earlier note that the platform returns HTTP 403 was a User-Agent artifact; a browser-like User-Agent is served normally."
+    },
+    {
+      "id": "blyun",
+      "name": "百链云图书馆",
+      "kind": "manual",
+      "url": "https://www.blyun.com/",
+      "limitation": "Redirected to login.jsp; institutional login needed. No content acquired."
+    }
+  ]
+}

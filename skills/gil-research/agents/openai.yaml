@@ -1,0 +1,4 @@
+interface:
+  display_name: "一般国际法实际检索"
+  short_description: "通过公开接口抓取国际法记录、正文和 PDF，明确各渠道覆盖及访问限制"
+  default_prompt: "使用 $gil-research 检索国际法问题，取得原文并列出来源、页码和访问限制。"

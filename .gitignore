@@ -1,0 +1,16 @@
+__pycache__/
+*.pyc
+*.pyo
+venv/
+.venv/
+*.egg-info/
+
+# Runtime artefacts
+output/
+*.local.json
+.gil-cache/
+.icl-cache/
+.unts-cache/
+.undocs-cache/
+.cilrap-cache/
+skills/*/output/
