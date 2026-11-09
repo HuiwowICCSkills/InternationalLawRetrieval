@@ -14,9 +14,9 @@
 ## 发布
 
 本工具及三个核心 skill 已发布为私有仓库：
-<https://github.com/GDUFSICCSkills/InternationalLawRetrieval>
+<https://github.com/HuiwowICCSkills/InternationalLawRetrieval>
 
-仓库结构：`skills/icl-research`、`skills/gil-research`、`skills/international-law-manual-research`、`catalog/`。来源控制台仍单独发行：<https://github.com/GDUFSICCSkills/InternationalLawSourceConsole>。
+仓库结构：`skills/icl-research`、`skills/gil-research`、`skills/international-law-manual-research`、`catalog/`。来源控制台仍单独发行：<https://github.com/HuiwowICCSkills/InternationalLawSourceConsole>。
 
 ## 外部通用联网技能
 
